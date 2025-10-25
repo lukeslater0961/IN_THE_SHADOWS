@@ -17,6 +17,6 @@ public class MapState : GameBaseState
 
 	public override void HandleEscapeInput(GameStateManager stateManager)
 	{
-		Debug.Log("escape pressed");
+		UiManager.instance.ToggleOptionsMenu();
 	}
 }

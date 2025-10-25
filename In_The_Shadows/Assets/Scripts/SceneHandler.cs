@@ -22,10 +22,17 @@ public class SceneHandler : MonoBehaviour
     {
 		currentScene = SceneManager.GetActiveScene().name;
     }
-	
+
+	public void LoadMainMenu()
+	{
+		StartCoroutine(LoadScene(0));
+		GameStateManager.instance.SwitchState(GameStateManager.mainMenuState);
+	}
+
 	public void LoadNormalGame()
 	{
 		GameManager.gameMode = 0;
+		UiManager.instance.ToggleMainMenu();
 		StartCoroutine(LoadScene(1));
 		GameStateManager.instance.SwitchState(GameStateManager.mapState);
 	}	
@@ -33,6 +40,7 @@ public class SceneHandler : MonoBehaviour
 	public void LoadTestGame()
 	{
 		GameManager.gameMode = 1;
+		UiManager.instance.ToggleMainMenu();
 		StartCoroutine(LoadScene(1));
 		GameStateManager.instance.SwitchState(GameStateManager.mapState);
 	}
@@ -43,5 +51,7 @@ public class SceneHandler : MonoBehaviour
 		while (!asyncLoad.isDone)
 			yield return null;
 		currentScene = SceneManager.GetActiveScene().name;
+		if (currentScene == "MainMenu")
+			UiManager.instance.ToggleMainMenu();
 	}
 }
