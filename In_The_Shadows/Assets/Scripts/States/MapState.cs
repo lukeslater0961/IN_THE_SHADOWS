@@ -5,6 +5,7 @@ public class MapState : GameBaseState
 {
 	public override void EnterState(GameStateManager stateManager)
     {
+		Debug.Log("entering map state");
         stateManager.StartCoroutine(WaitForMapManager());
     }
 

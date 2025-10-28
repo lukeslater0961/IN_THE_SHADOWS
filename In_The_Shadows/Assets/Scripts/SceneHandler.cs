@@ -33,16 +33,16 @@ public class SceneHandler : MonoBehaviour
 	{
 		GameManager.gameMode = 0;
 		UiManager.instance.ToggleMainMenu();
-		StartCoroutine(LoadScene(1));
 		GameStateManager.instance.SwitchState(GameStateManager.mapState);
+		StartCoroutine(LoadScene(1));
 	}	
 
 	public void LoadTestGame()
 	{
 		GameManager.gameMode = 1;
 		UiManager.instance.ToggleMainMenu();
-		StartCoroutine(LoadScene(1));
 		GameStateManager.instance.SwitchState(GameStateManager.mapState);
+		StartCoroutine(LoadScene(1));
 	}
 
 	public IEnumerator LoadScene(int index)

@@ -1,9 +1,11 @@
 using UnityEngine;
+using System.Collections;
 using UnityEngine.InputSystem;
 
 public class InputHandler : MonoBehaviour
 {
 	private InputAction escape;
+	private InputAction space;
 	public static InputHandler instance;
 
 	void Awake()
@@ -20,6 +22,7 @@ public class InputHandler : MonoBehaviour
     void Start()
     {
 		escape = InputSystem.actions.FindAction("Escape");
+		space = InputSystem.actions.FindAction("Space");
     }
 
     void Update()
@@ -31,5 +34,7 @@ public class InputHandler : MonoBehaviour
 	{
 		if (GameStateManager.instance.currentState !=  GameStateManager.mainMenuState && escape.WasPressedThisFrame())
 			GameStateManager.instance.HandleEscapeInput();
+		if (MapManager.instance && MapManager.currentLevelIndex != 0 && space.WasPressedThisFrame())
+			StartCoroutine(SceneHandler.instance.LoadScene(MapManager.currentLevelIndex));
 	}
 }

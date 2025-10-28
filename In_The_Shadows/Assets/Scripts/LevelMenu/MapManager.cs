@@ -1,9 +1,12 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 public class MapManager : MonoBehaviour
 {
-	public static MapManager instance;
+	public static MapManager	instance;
+	public static int		currentLevelIndex;
+	public static event Action OnMapInitialized;
 
 	[SerializeField] private List<GameObject> levels;
 
@@ -14,6 +17,11 @@ public class MapManager : MonoBehaviour
 		}
 		else
 			Destroy(gameObject);
+	}
+
+	void Start()
+	{
+		currentLevelIndex = 0;
 	}
 
 	public  void InitialiseLevelState()
@@ -27,5 +35,6 @@ public class MapManager : MonoBehaviour
 			else
 				gb.GetComponent<LevelPlaceHolder>().isLocked = lockState;
 		}
+		OnMapInitialized?.Invoke();
 	}
 }
