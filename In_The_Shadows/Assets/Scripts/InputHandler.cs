@@ -35,6 +35,14 @@ public class InputHandler : MonoBehaviour
 		if (GameStateManager.instance.currentState !=  GameStateManager.mainMenuState && escape.WasPressedThisFrame())
 			GameStateManager.instance.HandleEscapeInput();
 		if (MapManager.instance && MapManager.currentLevelIndex != 0 && space.WasPressedThisFrame())
+		{
+			GameStateManager.instance.SwitchState(GameStateManager.levelState);
 			StartCoroutine(SceneHandler.instance.LoadScene(MapManager.currentLevelIndex));
+		}//to be removed
+		else if(space.WasPressedThisFrame() && GameStateManager.instance.currentState == GameStateManager.levelState)
+		{
+			Debug.Log("saving");
+			SaveAnswer.instance.SetValues();
+		}
 	}
 }
