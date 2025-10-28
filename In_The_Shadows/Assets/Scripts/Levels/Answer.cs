@@ -5,5 +5,5 @@ using System.Collections;
 public class Answer : ScriptableObject
 {
 	public RenderTexture	renderedAnswer;
-	public BitArray			bitMask = new BitArray(64*64);
+	public byte[]			byteMask;
 }

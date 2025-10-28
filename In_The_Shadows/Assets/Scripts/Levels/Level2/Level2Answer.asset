@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 78bd306a472ff4c1b9cf701e1d443707, type: 3}
-  m_Name: level1Answer
+  m_Name: Level2Answer
   m_EditorClassIdentifier: Assembly-CSharp::Answer
   renderedAnswer: {fileID: 8400000, guid: 239ec4087cfd04b50845662c49c865e3, type: 2}
-  byteMask: 000000000000018321814183418341bfe1ff73ff3fff3fff1ffe1ffc06000000
+  byteMask: 000000000000000007f81ffc3ffe7ffd4ffdc7fe87fc00f00060000000000000

@@ -8,6 +8,15 @@ public class SaveAnswer : MonoBehaviour
 		[SerializeField]	RenderTexture	renderTexture;
 		[SerializeField]	byte[]		byteMask;
 
+
+		[SerializeField]
+		[TextArea(1, 1)] 
+		private string folderPath; 
+
+		[SerializeField]
+		[TextArea(1, 1)] 
+		private string fileName;
+
 		void Awake()
 		{
 			if (instance == null){
@@ -22,9 +31,8 @@ public class SaveAnswer : MonoBehaviour
 			Answer newAnswer = ScriptableObject.CreateInstance<Answer>();
 
 			newAnswer.renderedAnswer = renderTexture;
-			GetTextureValues(renderTexture);
-			string folderPath = "Assets/Scripts/Levels/Level1/";
-			string assetPath = folderPath + "level1Answer" + ".asset";
+			newAnswer.byteMask =  GetTextureValues(renderTexture);
+			string assetPath = folderPath + fileName + ".asset";
 
 			System.IO.Directory.CreateDirectory(folderPath);
 
@@ -33,7 +41,7 @@ public class SaveAnswer : MonoBehaviour
 			AssetDatabase.Refresh();
 		}
 
-		void GetTextureValues(RenderTexture renderTexture)
+		byte[] GetTextureValues(RenderTexture renderTexture)
 		{
 			RenderTexture currentRT = RenderTexture.active;
 			RenderTexture.active = renderTexture;
@@ -41,26 +49,26 @@ public class SaveAnswer : MonoBehaviour
 			Texture2D tex = new Texture2D(renderTexture.width, renderTexture.height, TextureFormat.RGB24, false);
 			tex.ReadPixels(new Rect(0, 0, renderTexture.width, renderTexture.height), 0, 0);
 			tex.Apply();
-			byteMask = new byte[renderTexture.height * 8];
-			for (int y = 0 ; y < renderTexture.height ; y++)
-			{
-				for (int x = 0 ; x < renderTexture.width ; x += 8)
-					byteMask[y] = SetBitArray(tex, ref x, y);
-			}
-			for (int i = 0; i < byteMask.Length; i++)
-				Debug.Log(byteMask[i]);
+			byteMask = new byte[(renderTexture.width / 8) * renderTexture.height];
+			byteMask = ReadPixelFromTexture(byteMask, tex);
+			RenderTexture.active = currentRT;
+			return(byteMask);
 		}
 
-		byte SetBitArray(Texture2D tex, ref int x, int y)
+		byte[] ReadPixelFromTexture(byte[] byteMask, Texture2D tex)
 		{
-			byte bit = 0;
-			float grayScaleValue = 0f;
-			for (int bx = 0; bx < 8; bx++)
+			for (int y = 0 ; y < renderTexture.height ; y++)
 			{
-				grayScaleValue += tex.GetPixel(x + bx, y).grayscale;
-				if (grayScaleValue >= 0.5)
-					bit |= (byte)(1 << (7 - bx));
+				for (int x = 0 ; x < renderTexture.width ; x++)
+				{
+					float gray = tex.GetPixel(x, y).grayscale;
+					int byteIndex = y * (renderTexture.width / 8) + (x / 8);
+					int bitPosition = 7 - (x % 8);
+
+					if (gray < 0.5f)
+						byteMask[byteIndex] |= (byte)(1 << bitPosition);
+				}
 			}
-			return bit;
+			return byteMask;
 		}
 }
