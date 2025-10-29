@@ -3,12 +3,9 @@ using TMPro;
 
 public class LevelPlaceHolder : MonoBehaviour
 {
-	[SerializeField]	LevelBaseScript levelInfo;
+	[SerializeField]	public LevelBaseScript levelInfo;
 	[SerializeField]	TMP_Text			levelText;
 	[SerializeField]	GameObject			border;
-
-	public bool		isLocked;
-
 
 	void Start()
 	{
@@ -25,14 +22,15 @@ public class LevelPlaceHolder : MonoBehaviour
 
 	void OnTriggerEnter(Collider other)
 	{
-		if (isLocked) return;
-		MapManager.currentLevelIndex = levelInfo.levelSceneIndex;
+		if (levelInfo.isLocked) return;
+		if (!levelInfo.passed || GameManager.gameMode == 1)
+			MapManager.currentLevelIndex = levelInfo.levelSceneIndex;
 		levelText.gameObject.SetActive(true);
 	}
 
 	void OnTriggerExit(Collider other)
 	{
-		if (isLocked) return;
+		if (levelInfo.isLocked) return;
 		MapManager.currentLevelIndex = 0;
 		levelText.gameObject.SetActive(false);
 	
@@ -40,7 +38,7 @@ public class LevelPlaceHolder : MonoBehaviour
 
 	public void CheckLock()
 	{
-		if (isLocked){
+		if (levelInfo.isLocked){
 			border.SetActive(true);
 		}
 		else

@@ -8,7 +8,6 @@ public class ShadowChecker : MonoBehaviour
 	[SerializeField]	RenderTexture	renderTexture;
 	[SerializeField]	byte[]			byteMask;
 
-
 	void Awake()
 	{
 		if (instance == null){
@@ -28,13 +27,16 @@ public class ShadowChecker : MonoBehaviour
 				invalidPixels += 1f;
 		}
 		Debug.Log(invalidPixels / byteMask.Length);
-		if ((invalidPixels / byteMask.Length) > 0.5)
+		if ((invalidPixels / byteMask.Length) > 0.4)
 		{
 			Debug.Log("not same");
 			return; 
 		}
 		else
+		{
 			Debug.Log("same");
+			LevelManager.instance.LevelPassed();
+		}
 	}
 
 	void GetTextureValues()

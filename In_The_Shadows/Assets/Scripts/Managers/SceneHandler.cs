@@ -39,6 +39,12 @@ public class SceneHandler : MonoBehaviour
 		StartCoroutine(LoadScene(1));
 	}
 
+	public void LoadLevel(int index)
+	{
+		GameManager.instance.firstLoad = false;
+		StartCoroutine(LoadScene(index));
+	}
+
 	public IEnumerator LoadScene(int index)
 	{
 		AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(index);

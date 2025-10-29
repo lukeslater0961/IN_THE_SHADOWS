@@ -5,6 +5,7 @@ public class GameManager : MonoBehaviour
 	public static GameManager instance;
 	[SerializeField] public static int gameMode;
 	[SerializeField]public 	bool isInMenu;
+	public bool		firstLoad;
 	
 	void Awake()
 	{
@@ -16,6 +17,7 @@ public class GameManager : MonoBehaviour
 		else
 			Destroy(gameObject);
 		isInMenu = false;
+		firstLoad = true;
 	}
 
 	public void QuitGame()

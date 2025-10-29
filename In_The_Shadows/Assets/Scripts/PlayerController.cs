@@ -4,7 +4,6 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     private             InputAction         move;
-    private             Camera              mainCamera;
     private             CharacterController controller;
     private             Vector3             velocity;
 
@@ -15,7 +14,6 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         move = InputSystem.actions.FindAction("Move");
-        mainCamera = Camera.main;
         controller = GetComponent<CharacterController>();
     }
 
@@ -47,13 +45,6 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("moving_right", false);
         }//set right or left animations when moving 
 
-
-        Vector3 previousPosition = transform.position;
-
         controller.Move((moveDirection * speed + velocity) * Time.deltaTime);
-
-        Vector3 actualMovement = transform.position - previousPosition;
-
-        mainCamera.transform.position += new Vector3(actualMovement.x, 0f, 0f);
     }
 }

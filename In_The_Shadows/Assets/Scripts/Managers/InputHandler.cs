@@ -37,7 +37,7 @@ public class InputHandler : MonoBehaviour
 		if (MapManager.instance && MapManager.currentLevelIndex != 0 && space.WasPressedThisFrame())
 		{
 			GameStateManager.instance.SwitchState(GameStateManager.levelState);
-			StartCoroutine(SceneHandler.instance.LoadScene(MapManager.currentLevelIndex));
+			SceneHandler.instance.LoadLevel(MapManager.currentLevelIndex);
 		}//to be removed
 		else if(space.WasPressedThisFrame() && GameStateManager.instance.currentState == GameStateManager.levelState)
 			ShadowChecker.instance.CheckShadow();
