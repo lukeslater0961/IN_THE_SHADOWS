@@ -24,7 +24,11 @@ public class UiManager : MonoBehaviour
 
 	public void ToggleMainMenu()
 	{
-		mainMenu.SetActive(!mainMenu.activeSelf);
+		if (SceneHandler.instance.currentScene != "MainMenu"){
+			mainMenu.SetActive(false);
+		}
+		else
+			mainMenu.SetActive(!mainMenu.activeSelf);
 	}
 
 	public void ToggleOptionsMenu()

@@ -6,4 +6,5 @@ public class Answer : ScriptableObject
 {
 	public RenderTexture	renderedAnswer;
 	public byte[]			byteMask;
+	public float			threshold;
 }

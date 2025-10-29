@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class SceneHandler : MonoBehaviour
 {
 	public static SceneHandler instance;
-	[SerializeField]  string currentScene;
+	[SerializeField] public string currentScene;
 
 	void Awake()
 	{
@@ -16,12 +16,8 @@ public class SceneHandler : MonoBehaviour
 		}
 		else
 			Destroy(gameObject);
-	}
-
-    void Start()
-    {
 		currentScene = SceneManager.GetActiveScene().name;
-    }
+	}
 
 	public void LoadMainMenu()
 	{
@@ -32,7 +28,6 @@ public class SceneHandler : MonoBehaviour
 	public void LoadNormalGame()
 	{
 		GameManager.gameMode = 0;
-		UiManager.instance.ToggleMainMenu();
 		GameStateManager.instance.SwitchState(GameStateManager.mapState);
 		StartCoroutine(LoadScene(1));
 	}	
@@ -40,7 +35,6 @@ public class SceneHandler : MonoBehaviour
 	public void LoadTestGame()
 	{
 		GameManager.gameMode = 1;
-		UiManager.instance.ToggleMainMenu();
 		GameStateManager.instance.SwitchState(GameStateManager.mapState);
 		StartCoroutine(LoadScene(1));
 	}
@@ -51,7 +45,6 @@ public class SceneHandler : MonoBehaviour
 		while (!asyncLoad.isDone)
 			yield return null;
 		currentScene = SceneManager.GetActiveScene().name;
-		if (currentScene == "MainMenu")
-			UiManager.instance.ToggleMainMenu();
+		UiManager.instance.ToggleMainMenu();
 	}
 }

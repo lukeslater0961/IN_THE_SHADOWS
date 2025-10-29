@@ -40,9 +40,6 @@ public class InputHandler : MonoBehaviour
 			StartCoroutine(SceneHandler.instance.LoadScene(MapManager.currentLevelIndex));
 		}//to be removed
 		else if(space.WasPressedThisFrame() && GameStateManager.instance.currentState == GameStateManager.levelState)
-		{
-			Debug.Log("saving");
-			SaveAnswer.instance.SetValues();
-		}
+			ShadowChecker.instance.CheckShadow();
 	}
 }
