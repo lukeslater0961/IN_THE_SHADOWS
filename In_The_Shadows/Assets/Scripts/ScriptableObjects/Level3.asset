@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 613dd1910139a46f9b35f2f2abe4c802, type: 3}
   m_Name: Level3
   m_EditorClassIdentifier: Assembly-CSharp::LevelBaseScript
+  levelName: level3
   levelSceneIndex: 4
   isLocked: 1
+  passed: 0

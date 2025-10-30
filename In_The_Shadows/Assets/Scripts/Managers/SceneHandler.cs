@@ -35,13 +35,13 @@ public class SceneHandler : MonoBehaviour
 	public void LoadTestGame()
 	{
 		GameManager.gameMode = 1;
+		SettingsManager.instance.SetValuesForTest();
 		GameStateManager.instance.SwitchState(GameStateManager.mapState);
 		StartCoroutine(LoadScene(1));
 	}
 
 	public void LoadLevel(int index)
 	{
-		GameManager.instance.firstLoad = false;
 		StartCoroutine(LoadScene(index));
 	}
 

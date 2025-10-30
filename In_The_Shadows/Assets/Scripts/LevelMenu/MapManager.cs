@@ -26,19 +26,6 @@ public class MapManager : MonoBehaviour
 
 	public  void InitialiseLevelState()
 	{
-		if (GameManager.instance.firstLoad)
-		{
-			bool lockState = (GameManager.gameMode == 1) ? false : true;
-			foreach(GameObject gb in levels)
-			{
-				if(gb.name == "Level1"){
-					gb.GetComponent<LevelPlaceHolder>().levelInfo.isLocked = false;
-				}
-				else
-					gb.GetComponent<LevelPlaceHolder>().levelInfo.isLocked = lockState;
-				gb.GetComponent<LevelPlaceHolder>().levelInfo.passed = false;
-			}
-		}
 		OnMapInitialized?.Invoke();
 	}
 }

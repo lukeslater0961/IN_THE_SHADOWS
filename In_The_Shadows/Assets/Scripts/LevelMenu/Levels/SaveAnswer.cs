@@ -28,17 +28,19 @@ public class SaveAnswer : MonoBehaviour
 		
 		public void SetValues()
 		{
-			Answer newAnswer = ScriptableObject.CreateInstance<Answer>();
+			#if UNITY_EDITOR
+				Answer newAnswer = ScriptableObject.CreateInstance<Answer>();
 
-			newAnswer.renderedAnswer = renderTexture;
-			newAnswer.byteMask =  GetTextureValues(renderTexture);
-			string assetPath = folderPath + fileName + ".asset";
+				newAnswer.renderedAnswer = renderTexture;
+				newAnswer.byteMask =  GetTextureValues(renderTexture);
+				string assetPath = folderPath + fileName + ".asset";
 
-			System.IO.Directory.CreateDirectory(folderPath);
+				System.IO.Directory.CreateDirectory(folderPath);
 
-			AssetDatabase.CreateAsset(newAnswer, assetPath);
-			AssetDatabase.SaveAssets();
-			AssetDatabase.Refresh();
+				AssetDatabase.CreateAsset(newAnswer, assetPath);
+				AssetDatabase.SaveAssets();
+				AssetDatabase.Refresh();
+			#endif
 		}
 
 		byte[] GetTextureValues(RenderTexture renderTexture)

@@ -17,8 +17,9 @@ public class LevelManager : MonoBehaviour
 
 	public void LevelPassed()
 	{
-		nextLevel.isLocked = false;
-		levelInfo.passed = true;
+		SettingsManager.instance.SetSettingsValue(nextLevel.levelName + "Lock", 0);
+		SettingsManager.instance.SetSettingsValue(levelInfo.levelName + "Passed", 1);
+
 		if (GameManager.gameMode == 0){
 			SceneHandler.instance.LoadNormalGame();
 		}
