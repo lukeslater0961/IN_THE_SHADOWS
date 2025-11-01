@@ -4,6 +4,7 @@ public class LevelManager : MonoBehaviour
 {
 	[SerializeField]	LevelBaseScript	nextLevel;
 	[SerializeField]	LevelBaseScript	levelInfo;
+	[SerializeField]	GameObject		obj;
 	public static LevelManager instance;
 
 	void Awake()
@@ -13,6 +14,7 @@ public class LevelManager : MonoBehaviour
 		}
 		else
 			Destroy(gameObject);
+		SetObjRotation();
 		SetInputRules();
 	}
 
@@ -44,5 +46,12 @@ public class LevelManager : MonoBehaviour
 		}
 		else
 			SceneHandler.instance.LoadTestGame();
+	}
+	
+	public void SetObjRotation()
+	{
+		float rotation = Random.Range(50, 300);
+		Debug.Log($"rotatiing on {rotation}");
+		obj.transform.Rotate(Vector3.up, rotation, Space.World);
 	}
 }
