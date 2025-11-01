@@ -6,7 +6,10 @@ public class InputHandler : MonoBehaviour
 {
 	private InputAction escape;
 	private InputAction space;
+	private InputAction mouseClick;
 	public static InputHandler instance;
+
+	private ILevelInputRules levelRules;
 
 	void Awake()
 	{
@@ -23,12 +26,19 @@ public class InputHandler : MonoBehaviour
     {
 		escape = InputSystem.actions.FindAction("Escape");
 		space = InputSystem.actions.FindAction("Space");
+		mouseClick = InputSystem.actions.FindAction("Mouse");
+		levelRules = null;
     }
 
     void Update()
     {
 		HandleInput();
     }
+
+	public void SetRules(ILevelInputRules rules)
+	{
+		levelRules = rules;
+	}
 
 	void HandleInput()
 	{
@@ -39,7 +49,8 @@ public class InputHandler : MonoBehaviour
 			GameStateManager.instance.SwitchState(GameStateManager.levelState);
 			SceneHandler.instance.LoadLevel(MapManager.currentLevelIndex);
 		}//to be removed
-		else if(space.WasPressedThisFrame() && GameStateManager.instance.currentState == GameStateManager.levelState)
-			ShadowChecker.instance.CheckShadow();
+		else if(GameStateManager.instance.currentState == GameStateManager.levelState && levelRules != null)
+			levelRules.HandleLevelInput(mouseClick);
+			//ShadowChecker.instance.CheckShadow();
 	}
 }

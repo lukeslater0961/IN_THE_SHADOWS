@@ -6,6 +6,7 @@ public class LevelState : GameBaseState
 	{
 		Debug.Log("entered level state");
 	}
+
 	public override void HandleEscapeInput(GameStateManager stateManager)
 	{
 		UiManager.instance.ToggleOptionsMenu();

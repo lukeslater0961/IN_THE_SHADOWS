@@ -46,7 +46,6 @@ public class SettingsManager : MonoBehaviour
 		level1Info.passed = (PlayerPrefs.GetInt("level1Passed") == 1) ? true : false; 
 		level2Info.passed = (PlayerPrefs.GetInt("level2Passed") == 1) ? true : false;
 		level3Info.passed = (PlayerPrefs.GetInt("level3Passed") == 1) ? true : false;
-
 	}
 
 	public void SetSettingsValue(string dataName, int value)

@@ -10,36 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
-  m_Name: MainMenu_fr
+  m_Name: Options Menu_fr
   m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
   m_LocaleId:
     m_Code: fr
-  m_SharedData: {fileID: 11400000, guid: 5ebe3cb8750b249c58ec76e73c2abe6f, type: 2}
+  m_SharedData: {fileID: 11400000, guid: ed4f770f6a0694bafa0bfd43dd3040b2, type: 2}
   m_Metadata:
     m_Items: []
   m_TableData:
-  - m_Id: 756135509352448
-    m_Localized: Normal
+  - m_Id: 23021477888
+    m_Localized: Musique
     m_Metadata:
       m_Items: []
-  - m_Id: 756153813295104
-    m_Localized: Test
+  - m_Id: 39651893248
+    m_Localized: Menu principal
     m_Metadata:
       m_Items: []
-  - m_Id: 756177020379136
-    m_Localized: Effacer
-    m_Metadata:
-      m_Items: []
-  - m_Id: 756226093735936
-    m_Localized: Quitter
-    m_Metadata:
-      m_Items: []
-  - m_Id: 756234620755968
-    m_Localized: Anglais
-    m_Metadata:
-      m_Items: []
-  - m_Id: 756252727566336
-    m_Localized: Francais
+  - m_Id: 72157749248
+    m_Localized: "Plein \xE9cran"
     m_Metadata:
       m_Items: []
   references:

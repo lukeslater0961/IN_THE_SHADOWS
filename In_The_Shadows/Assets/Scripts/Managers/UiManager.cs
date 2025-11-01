@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.Localization;
+using UnityEngine.Localization.Settings;
 
 public class UiManager : MonoBehaviour
 {
@@ -40,5 +42,23 @@ public class UiManager : MonoBehaviour
 		}
 		else
 			GameManager.instance.isInMenu = false;
+	}
+
+	public void SwitchLanguage()
+	{
+		string currentCode = LocalizationSettings.SelectedLocale.Identifier.Code;
+		switch (currentCode)
+		{
+			case "fr":
+				Locale english = LocalizationSettings.AvailableLocales.GetLocale("en");
+                LocalizationSettings.SelectedLocale = english;
+				break;
+			case "en":
+				Locale french = LocalizationSettings.AvailableLocales.GetLocale("fr");
+                LocalizationSettings.SelectedLocale = french;
+				break;
+            default:
+				break;
+		}
 	}
 }
