@@ -30,6 +30,10 @@ MonoBehaviour:
     m_Localized: Niveau 2
     m_Metadata:
       m_Items: []
+  - m_Id: 12273752989696
+    m_Localized: Bravo !
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
