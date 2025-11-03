@@ -6,7 +6,8 @@ public class UiManager : MonoBehaviour
 {
 	public static UiManager instance;
 	[SerializeField]	public GameObject optionsMenu;
-	[SerializeField]	GameObject mainMenu;
+	[SerializeField]	public GameObject mainMenu;
+	[SerializeField]	public GameObject successScreen;
 
 
 	void Awake()
@@ -35,7 +36,6 @@ public class UiManager : MonoBehaviour
 
 	public void ToggleOptionsMenu()
 	{
-
 		optionsMenu.SetActive(!optionsMenu.activeSelf);
 		if (optionsMenu.activeSelf){
 			GameManager.instance.isInMenu = true;
@@ -44,21 +44,20 @@ public class UiManager : MonoBehaviour
 			GameManager.instance.isInMenu = false;
 	}
 
-	public void SwitchLanguage()
+	public void ToggleSuccess()
 	{
-		string currentCode = LocalizationSettings.SelectedLocale.Identifier.Code;
-		switch (currentCode)
-		{
-			case "fr":
-				Locale english = LocalizationSettings.AvailableLocales.GetLocale("en");
-                LocalizationSettings.SelectedLocale = english;
-				break;
-			case "en":
-				Locale french = LocalizationSettings.AvailableLocales.GetLocale("fr");
-                LocalizationSettings.SelectedLocale = french;
-				break;
-            default:
-				break;
-		}
+		successScreen.SetActive(!successScreen.activeSelf);
+	}
+
+	public void SwitchToEnglish()
+	{
+		Locale english = LocalizationSettings.AvailableLocales.GetLocale("en");
+		LocalizationSettings.SelectedLocale = english;
+	}
+
+	public void SwitchToFrench()
+	{
+		Locale french = LocalizationSettings.AvailableLocales.GetLocale("fr");
+		LocalizationSettings.SelectedLocale = french;
 	}
 }

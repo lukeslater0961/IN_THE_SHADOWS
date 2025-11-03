@@ -8,15 +8,6 @@ public class SaveAnswer : MonoBehaviour
 		[SerializeField]	RenderTexture	renderTexture;
 		[SerializeField]	byte[]		byteMask;
 
-
-		[SerializeField]
-		[TextArea(1, 1)] 
-		private string folderPath; 
-
-		[SerializeField]
-		[TextArea(1, 1)] 
-		private string fileName;
-
 		void Awake()
 		{
 			if (instance == null){
@@ -28,14 +19,15 @@ public class SaveAnswer : MonoBehaviour
 		
 		public void SetValues()
 		{
+			Debug.Log("Saving");
 			#if UNITY_EDITOR
 				Answer newAnswer = ScriptableObject.CreateInstance<Answer>();
 
 				newAnswer.renderedAnswer = renderTexture;
 				newAnswer.byteMask =  GetTextureValues(renderTexture);
-				string assetPath = folderPath + fileName + ".asset";
+				string assetPath = "Assets/Scripts/LevelMenu/LevelsAnswers/Level3/" + "Level3Answer" + ".asset";
 
-				System.IO.Directory.CreateDirectory(folderPath);
+				System.IO.Directory.CreateDirectory("Assets/Scripts/LevelMenu/Levels/Level3/");
 
 				AssetDatabase.CreateAsset(newAnswer, assetPath);
 				AssetDatabase.SaveAssets();

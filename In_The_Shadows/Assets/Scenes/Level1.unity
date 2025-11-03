@@ -652,8 +652,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SaveAnswer
   renderTexture: {fileID: 8400000, guid: 239ec4087cfd04b50845662c49c865e3, type: 2}
   byteMask: 
-  folderPath: 
-  fileName: 
 --- !u!4 &1056038698
 Transform:
   m_ObjectHideFlags: 0
@@ -700,7 +698,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LevelManager
   nextLevel: {fileID: 11400000, guid: 831cad5fcfe7a4f47821a8198a0ff2b6, type: 2}
   levelInfo: {fileID: 11400000, guid: a2012936cec3a4ce787b8daf11fc8f92, type: 2}
-  obj: {fileID: 4204931237217333728}
+  obj1: {fileID: 4204931237217333728}
+  obj2: {fileID: 0}
 --- !u!4 &1350221936
 Transform:
   m_ObjectHideFlags: 0

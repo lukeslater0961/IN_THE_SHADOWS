@@ -1,91 +1,74 @@
 using UnityEngine.InputSystem;
 using UnityEngine;
 
-public struct DragSettings
-{
-	public static bool isDragging;
-	public static float rotationSpeed;
-	public static GameObject obj;
-
-	static DragSettings()
-    {
-        rotationSpeed = 1f;
-        isDragging = false;
-		obj = null;
-    }
-}
-
 public class Level1Rules : ILevelInputRules
 {
-	private DragRotate dragRotate;
+	private DragHandler dragHandler;
 
-	public Level1Rules()
+	public Level1Rules(DragHandler dragHandler)
     {
-        dragRotate = new DragRotate();
+		this.dragHandler = dragHandler;
     }
 
     public void HandleLevelInput(InputAction mouseClick)
     {
 		if (mouseClick.WasPressedThisFrame())
-		{
-			RaycastHit hit;
-			Vector2 mousePos = Mouse.current.position.ReadValue();
-			Ray ray = Camera.main.ScreenPointToRay(mousePos);
+			dragHandler.HandleDrag(DragHandler.dragMode.rotateX);
 
-			if (Physics.Raycast(ray, out hit, Mathf.Infinity))
-			{
-				DragSettings.obj = hit.collider.gameObject;
-				DragSettings.isDragging = true;
-				dragRotate.StartDrag(mousePos);
-			}
-		}
-
+		if (dragHandler.isDragging)
+			dragHandler.DoMode();
+			
 		if (mouseClick.WasReleasedThisFrame())
-		{
-			DragSettings.isDragging = false;
-			DragSettings.obj = null;
-			dragRotate.EndDrag();
-		}
-
-		if (DragSettings.isDragging)
-			dragRotate.Rotate(Vector3.up);
+			dragHandler.EndDrag();
     }
 }
 
 public class Level2Rules : ILevelInputRules
 {
+	private DragHandler dragHandler;
+
+	public Level2Rules(DragHandler dragHandler)
+    {
+		this.dragHandler = dragHandler;
+    }
+
     public void HandleLevelInput(InputAction mouseClick)
     {
-        Debug.Log("level2 rules");
+        if (mouseClick.WasPressedThisFrame() && !Keyboard.current.leftCtrlKey.isPressed)
+			dragHandler.HandleDrag(DragHandler.dragMode.rotateX);
+		else if (mouseClick.WasPressedThisFrame() && Keyboard.current.leftCtrlKey.isPressed)
+			dragHandler.HandleDrag(DragHandler.dragMode.rotateY);
+		
+		if (dragHandler.isDragging)
+			dragHandler.DoMode();
+			
+		if (mouseClick.WasReleasedThisFrame())
+			dragHandler.EndDrag();
     }
 }
 
 public class Level3Rules : ILevelInputRules
 {
+	private DragHandler dragHandler;
+
+	public Level3Rules(DragHandler dragHandler)
+    {
+		this.dragHandler = dragHandler;
+    }
+
     public void HandleLevelInput(InputAction mouseClick)
     {
-        Debug.Log("level3 rules");
-    }
-}
+		if (mouseClick.WasPressedThisFrame() && Keyboard.current.leftCtrlKey.isPressed)
+			dragHandler.HandleDrag(DragHandler.dragMode.rotateY);
+		else if (mouseClick.WasPressedThisFrame() && Keyboard.current.leftShiftKey.isPressed)
+			dragHandler.HandleDrag(DragHandler.dragMode.Translate);
+		else if (mouseClick.WasPressedThisFrame())
+			dragHandler.HandleDrag(DragHandler.dragMode.rotateX);
 
-public class DragRotate
-{
-    private Vector2 previousMousePosition;
-
-    public void StartDrag(Vector2 mousePos)
-    {
-        previousMousePosition = mousePos;
-    }
-
-	public void EndDrag()
-	{
-		ShadowChecker.instance.CheckShadow();
+		if (dragHandler.isDragging)
+			dragHandler.DoMode();
+			
+		if (mouseClick.WasReleasedThisFrame())
+			dragHandler.EndDrag();
 	}
-
-    public void Rotate(Vector3 axis)
-    {
-        Vector2 mouseDelta = Mouse.current.position.ReadValue() - previousMousePosition;
-        DragSettings.obj.transform.Rotate(axis, mouseDelta.x * DragSettings.rotationSpeed, Space.World);
-        previousMousePosition = Mouse.current.position.ReadValue();
-    }
 }

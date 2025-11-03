@@ -7,6 +7,7 @@ public class InputHandler : MonoBehaviour
 	private InputAction escape;
 	private InputAction space;
 	private InputAction mouseClick;
+
 	public static InputHandler instance;
 
 	private ILevelInputRules levelRules;
@@ -48,9 +49,8 @@ public class InputHandler : MonoBehaviour
 		{
 			GameStateManager.instance.SwitchState(GameStateManager.levelState);
 			SceneHandler.instance.LoadLevel(MapManager.currentLevelIndex);
-		}//to be removed
+		}
 		else if(GameStateManager.instance.currentState == GameStateManager.levelState && levelRules != null)
 			levelRules.HandleLevelInput(mouseClick);
-			//ShadowChecker.instance.CheckShadow();
 	}
 }
