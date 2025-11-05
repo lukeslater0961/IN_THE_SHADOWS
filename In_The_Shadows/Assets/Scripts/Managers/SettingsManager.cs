@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class SettingsManager : MonoBehaviour
 {
@@ -83,5 +84,6 @@ public class SettingsManager : MonoBehaviour
 	{
 		PlayerPrefs.DeleteAll();
 		CheckSettings();
+		EventSystem.current.SetSelectedGameObject(null);
 	}
 }

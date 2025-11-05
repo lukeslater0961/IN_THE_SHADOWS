@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78bd306a472ff4c1b9cf701e1d443707, type: 3}
+  m_Name: Level2Level2Answe
+  m_EditorClassIdentifier: Assembly-CSharp::Answer
+  renderedAnswer: {fileID: 8400000, guid: 239ec4087cfd04b50845662c49c865e3, type: 2}
+  byteMask: 000000000000000000000c001ff07ffc7ff8c7f087f000800080000000000000
+  threshold: 0
