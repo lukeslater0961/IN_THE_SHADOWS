@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class LevelState : GameBaseState
 {
@@ -7,8 +8,11 @@ public class LevelState : GameBaseState
 		Debug.Log("entered level state");
 	}
 
-	public override void HandleEscapeInput(GameStateManager stateManager)
+	public override void HandleInput(GameStateManager stateManager)
 	{
-		UiManager.instance.ToggleOptionsMenu();
+		if (InputHandler.instance.levelRules != null)
+			InputHandler.instance.levelRules.HandleLevelInput(InputHandler.instance.mouseClick);
+		if (InputHandler.instance.escape.WasPressedThisFrame())
+			UiManager.instance.ToggleOptionsMenu();
 	}
 }

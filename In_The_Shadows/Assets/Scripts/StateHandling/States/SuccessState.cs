@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class SuccessState : GameBaseState 
 {
@@ -8,5 +9,5 @@ public class SuccessState : GameBaseState
 		UiManager.instance.ToggleSuccess();
 	}
 
-	public override void HandleEscapeInput(GameStateManager stateManager){}
+	public override void HandleInput(GameStateManager stateManager){}
 }

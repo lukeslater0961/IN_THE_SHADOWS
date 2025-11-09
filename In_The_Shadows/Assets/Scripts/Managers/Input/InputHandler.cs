@@ -4,13 +4,13 @@ using UnityEngine.InputSystem;
 
 public class InputHandler : MonoBehaviour
 {
-	private InputAction escape;
+	public InputAction escape;
 	private InputAction space;
-	private InputAction mouseClick;
+	public InputAction mouseClick;
 
 	public static InputHandler instance;
 
-	private ILevelInputRules levelRules;
+	public ILevelInputRules levelRules;
 
 	void Awake()
 	{
@@ -43,14 +43,11 @@ public class InputHandler : MonoBehaviour
 
 	void HandleInput()
 	{
-		if (GameStateManager.instance.currentState !=  GameStateManager.mainMenuState && escape.WasPressedThisFrame())
-			GameStateManager.instance.HandleEscapeInput();
-		if (MapManager.instance && MapManager.currentLevelIndex != 0 && space.WasPressedThisFrame())
+		GameStateManager.instance.HandleInput();
+		if (space.WasPressedThisFrame() && MapManager.instance && MapManager.currentLevelIndex != 0)
 		{
 			GameStateManager.instance.SwitchState(GameStateManager.levelState);
 			SceneHandler.instance.LoadLevel(MapManager.currentLevelIndex);
 		}
-		else if(GameStateManager.instance.currentState == GameStateManager.levelState && levelRules != null)
-			levelRules.HandleLevelInput(mouseClick);
 	}
 }

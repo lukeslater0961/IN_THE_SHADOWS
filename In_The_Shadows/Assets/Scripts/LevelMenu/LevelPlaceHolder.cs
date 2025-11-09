@@ -1,10 +1,11 @@
 using UnityEngine;
-using TMPro;
+using TMPro; 
+using UnityEngine.UI;
 
 public class LevelPlaceHolder : MonoBehaviour
 {
 	[SerializeField]	public LevelBaseScript levelInfo;
-	[SerializeField]	TMP_Text			levelText;
+	[SerializeField]	RawImage			levelText;
 	[SerializeField]	GameObject			border;
 
 	void Start()
@@ -33,7 +34,6 @@ public class LevelPlaceHolder : MonoBehaviour
 		if (levelInfo.isLocked) return;
 		MapManager.currentLevelIndex = 0;
 		levelText.gameObject.SetActive(false);
-	
 	}
 
 	public void CheckLock()

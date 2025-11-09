@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Level3Answer
   m_EditorClassIdentifier: Assembly-CSharp::Answer
   renderedAnswer: {fileID: 8400000, guid: 239ec4087cfd04b50845662c49c865e3, type: 2}
-  byteMask: 00000c000e000e000e00fefefee6fee2fee0c070e038701e381e1cde0efe0000
-  threshold: 0.3
+  byteMask: 00000600060006000600fef7fef3fef1c070e03c701e380e1cce0eee06fe0000
+  threshold: 0.47

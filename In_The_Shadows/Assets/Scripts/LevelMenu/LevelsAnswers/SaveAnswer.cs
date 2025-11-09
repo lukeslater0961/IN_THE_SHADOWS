@@ -27,7 +27,7 @@ public class SaveAnswer : MonoBehaviour
 				newAnswer.byteMask =  GetTextureValues(renderTexture);
 				string assetPath = "Assets/Scripts/LevelMenu/LevelsAnswers/Level3/" + "Level3Answer" + ".asset";
 
-				System.IO.Directory.CreateDirectory("Assets/Scripts/LevelMenu/Levels/Level3/");
+				//System.IO.Directory.CreateDirectory("Assets/Scripts/LevelMenu/Levels/Level1/");
 
 				AssetDatabase.CreateAsset(newAnswer, assetPath);
 				AssetDatabase.SaveAssets();
@@ -59,7 +59,7 @@ public class SaveAnswer : MonoBehaviour
 					int byteIndex = y * (renderTexture.width / 8) + (x / 8);
 					int bitPosition = 7 - (x % 8);
 
-					if (gray < 0.5f)
+					if (gray == 0f)
 						byteMask[byteIndex] |= (byte)(1 << bitPosition);
 				}
 			}

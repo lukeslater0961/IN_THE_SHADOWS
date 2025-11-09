@@ -23,9 +23,8 @@ public class SettingsManager : MonoBehaviour
 
 	void CheckSettings()
 	{
-		if (PlayerPrefs.HasKey("level2Lock")){
+		if (PlayerPrefs.HasKey("level2Lock"))
 			SetValues();
-		}
 		else
 			CreateDataSet();
 	}
@@ -85,5 +84,6 @@ public class SettingsManager : MonoBehaviour
 		PlayerPrefs.DeleteAll();
 		CheckSettings();
 		EventSystem.current.SetSelectedGameObject(null);
+		UiManager.instance.ToggleSaveStatus();
 	}
 }

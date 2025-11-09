@@ -10,6 +10,8 @@ public class DragHandler
 	private Vector2		startMousePosition;
     private Vector2		previousMousePosition;
 
+	private Vector2		centerPos = new Vector2(2f, 0f);
+
 	public  enum dragMode{None, rotateY, rotateX, Translate};
 	private		 dragMode currentMode = dragMode.None;
 
@@ -40,7 +42,7 @@ public class DragHandler
 
 	public void DoMode()
 	{
-		Vector2 mouseDelta = Mouse.current.position.ReadValue() - previousMousePosition;
+		Vector2 mouseDelta = GetMousePos() - previousMousePosition;
 		switch(currentMode)
 		{
 			case dragMode.rotateX:
@@ -50,7 +52,7 @@ public class DragHandler
 				  selectedObject.transform.Rotate(Vector3.right, -mouseDelta.y, Space.World);
 				  break;
 			case dragMode.Translate:
-				  selectedObject.transform.Translate(mouseDelta * speed * Time.deltaTime, Space.World);
+				  DoTranslate(mouseDelta);
 				  break;
 		}
 		previousMousePosition = GetMousePos();
@@ -62,5 +64,24 @@ public class DragHandler
 		currentMode = dragMode.None;
 		if (GetMousePos() != startMousePosition)
 			ShadowChecker.instance.CheckShadow();
+	}
+
+	void DoTranslate(Vector2 mouseDelta)
+	{
+		Vector2 pos = new Vector2(
+				selectedObject.transform.position.x,
+				selectedObject.transform.position.y
+				);
+
+		if (Mathf.Abs(mouseDelta.x) > Mathf.Abs(mouseDelta.y))
+			pos.x += mouseDelta.x * speed * Time.deltaTime;
+		else
+			pos.y += mouseDelta.y * speed * Time.deltaTime;
+
+		Vector2 dir = pos - centerPos;
+		if (dir.magnitude > 2f)
+			pos = centerPos + dir.normalized * 2f;
+
+		selectedObject.transform.position = new Vector3(pos.x, pos.y, selectedObject.transform.position.z);			
 	}
 }

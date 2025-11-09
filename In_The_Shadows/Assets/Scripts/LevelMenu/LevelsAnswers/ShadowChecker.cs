@@ -27,7 +27,7 @@ public class ShadowChecker : MonoBehaviour
 				invalidPixels += 1f;
 		}
 		Debug.Log(invalidPixels / byteMask.Length);
-		if ((invalidPixels / byteMask.Length) > levelAnswer.threshold)
+		if ((invalidPixels / byteMask.Length) >= levelAnswer.threshold)
 		{
 			Debug.Log("not same");
 			return; 
@@ -62,7 +62,7 @@ public class ShadowChecker : MonoBehaviour
 				int byteIndex = y * (renderTexture.width / 8) + (x / 8);
 				int bitPosition = 7 - (x % 8);
 
-				if (gray < 0.5f)
+				if (gray == 0f)
 					byteMask[byteIndex] |= (byte)(1 << bitPosition);
 			}
 		}

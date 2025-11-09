@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections;
+using UnityEngine.InputSystem;
 
 public class MainMenuState : GameBaseState
 {
@@ -10,5 +12,5 @@ public class MainMenuState : GameBaseState
 		else if (UiManager.instance.successScreen.activeSelf)
 			UiManager.instance.ToggleSuccess();
 	}
-	public override void HandleEscapeInput(GameStateManager stateManager){}
+	public override void HandleInput(GameStateManager stateManager){}
 }

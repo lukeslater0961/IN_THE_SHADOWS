@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.InputSystem;
 
 public class MapState : GameBaseState
 {
@@ -16,8 +17,9 @@ public class MapState : GameBaseState
 		MapManager.instance.InitialiseLevelState();
     }
 
-	public override void HandleEscapeInput(GameStateManager stateManager)
+	public override void HandleInput(GameStateManager stateManager)
 	{
-		UiManager.instance.ToggleOptionsMenu();
+		if (InputHandler.instance.escape.WasPressedThisFrame())
+			UiManager.instance.ToggleOptionsMenu();
 	}
 }

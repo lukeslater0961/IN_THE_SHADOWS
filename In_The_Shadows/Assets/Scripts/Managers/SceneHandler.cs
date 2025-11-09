@@ -4,8 +4,9 @@ using UnityEngine.SceneManagement;
 
 public class SceneHandler : MonoBehaviour
 {
-	public static SceneHandler instance;
-	[SerializeField] public string currentScene;
+	public static SceneHandler		instance;
+	[SerializeField] public string	currentScene;
+	[SerializeField] Animator		transition;
 
 	void Awake()
 	{
@@ -47,10 +48,16 @@ public class SceneHandler : MonoBehaviour
 
 	public IEnumerator LoadScene(int index)
 	{
-		AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(index);
-		while (!asyncLoad.isDone)
-			yield return null;
+		transition.SetTrigger("FadeOut");
+		yield return new WaitForSeconds(1f);
+
+		SceneManager.LoadScene(index);
+		yield return null;
+
 		currentScene = SceneManager.GetActiveScene().name;
 		UiManager.instance.ToggleMainMenu();
+
+		transition.SetTrigger("FadeIn");
+		yield return new WaitForSeconds(1f);
 	}
 }

@@ -34,8 +34,8 @@ public class GameStateManager : MonoBehaviour
 		currentState.EnterState(this);
 	}
 
-	public void HandleEscapeInput()
+	public void HandleInput()
 	{
-		currentState.HandleEscapeInput(this);
+		currentState.HandleInput(this);
 	}
 }

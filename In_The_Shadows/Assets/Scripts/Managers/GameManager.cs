@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections;
+using UnityEngine.EventSystems;
 
 public class GameManager : MonoBehaviour
 {
@@ -21,6 +23,7 @@ public class GameManager : MonoBehaviour
 	public void ToggleFullScreen()
 	{
 		Screen.fullScreen = !Screen.fullScreen;
+		EventSystem.current.SetSelectedGameObject(null);
 	}
 
 	public void QuitGame()
@@ -29,5 +32,10 @@ public class GameManager : MonoBehaviour
 		#if UNITY_EDITOR
 			UnityEditor.EditorApplication.isPlaying = false;
 		#endif
+	}
+
+	public IEnumerator WaitForSeconds(float time)
+	{
+		yield return new WaitForSeconds(time);
 	}
 }
