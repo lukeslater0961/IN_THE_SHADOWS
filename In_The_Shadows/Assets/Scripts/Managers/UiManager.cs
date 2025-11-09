@@ -39,9 +39,9 @@ public class UiManager : MonoBehaviour
 		GameManager.instance.isInMenu = (optionsMenu.activeSelf) ? true : false;
 	}
 
-	public void ToggleSuccess()
+	public void ToggleSuccess(bool toggled)
 	{
-		successScreen.SetActive(!successScreen.activeSelf);
+		successScreen.SetActive(toggled);
 	}
 
 	public void ToggleSaveStatus()

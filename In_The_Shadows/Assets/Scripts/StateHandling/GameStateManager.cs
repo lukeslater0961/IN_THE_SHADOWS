@@ -7,6 +7,7 @@ public class GameStateManager : MonoBehaviour
 	public static MainMenuState mainMenuState = new MainMenuState();
 	public static MapState mapState = new MapState();
 	public static LevelState levelState = new LevelState();
+	public static SuccessState successState = new SuccessState();
 
 
 	public GameBaseState currentState;

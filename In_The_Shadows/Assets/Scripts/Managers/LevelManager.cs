@@ -52,7 +52,7 @@ public class LevelManager : MonoBehaviour
 		SettingsManager.instance.SetSettingsValue(levelInfo.levelName + "Passed", 1);
 
 		if (levelInfo.levelName == "level3")
-			UiManager.instance.ToggleSuccess();
+			GameStateManager.instance.SwitchState(GameStateManager.successState);
 		else if (GameManager.gameMode == 0)
 			SceneHandler.instance.LoadNormalGame();
 		else

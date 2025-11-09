@@ -56,6 +56,7 @@ public class SceneHandler : MonoBehaviour
 
 		currentScene = SceneManager.GetActiveScene().name;
 		UiManager.instance.ToggleMainMenu();
+		UiManager.instance.ToggleSuccess(false);
 
 		transition.SetTrigger("FadeIn");
 		yield return new WaitForSeconds(1f);
