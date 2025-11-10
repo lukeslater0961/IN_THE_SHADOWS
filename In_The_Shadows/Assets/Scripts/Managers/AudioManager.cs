@@ -1,10 +1,11 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
     
-    private AudioSource music;
+    public AudioSource music;
 
     void Awake()
     {
@@ -17,16 +18,12 @@ public class AudioManager : MonoBehaviour
             Destroy(gameObject);
     }
 
-    void Start()
-    {
-        music = gameObject.GetComponent<AudioSource>();
-    }
-
     public void ToggleAudio()
     {
-        if (music.isPlaying)
+		if (music.isPlaying)
             music.Pause();
         else
             music.Play();
+		EventSystem.current.SetSelectedGameObject(null);
     }
 }

@@ -10,9 +10,8 @@ public class ShadowChecker : MonoBehaviour
 
 	void Awake()
 	{
-		if (instance == null){
+		if (instance == null)
 			instance = this;
-		}
 		else
 			Destroy(gameObject);
 	}
