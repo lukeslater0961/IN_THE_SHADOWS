@@ -9,6 +9,7 @@ public class UiManager : MonoBehaviour
 	[SerializeField]	public GameObject	optionsMenu;
 	[SerializeField]	public GameObject	mainMenu;
 	[SerializeField]	public GameObject	successScreen;
+	[SerializeField]	public GameObject	endOfGameScreen;
 
 	void Awake()
 	{
@@ -37,6 +38,11 @@ public class UiManager : MonoBehaviour
 	{
 		optionsMenu.SetActive(!optionsMenu.activeSelf);
 		GameManager.instance.isInMenu = (optionsMenu.activeSelf) ? true : false;
+	}
+
+	public void ToggleEndScreen(bool toggled)
+	{
+		endOfGameScreen.SetActive(toggled);
 	}
 
 	public void ToggleSuccess(bool toggled)

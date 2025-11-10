@@ -27,7 +27,7 @@ public class ShadowChecker : MonoBehaviour
 				invalidPixels += 1f;
 		}
 		Debug.Log(invalidPixels / byteMask.Length);
-		if ((invalidPixels / byteMask.Length) >= levelAnswer.threshold)
+		if ((invalidPixels / byteMask.Length) > levelAnswer.threshold)
 		{
 			Debug.Log("not same");
 			return; 

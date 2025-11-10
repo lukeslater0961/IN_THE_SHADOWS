@@ -51,12 +51,7 @@ public class LevelManager : MonoBehaviour
 			SettingsManager.instance.SetSettingsValue(nextLevel.levelName + "Lock", 0);
 		SettingsManager.instance.SetSettingsValue(levelInfo.levelName + "Passed", 1);
 
-		if (levelInfo.levelName == "level3")
-			GameStateManager.instance.SwitchState(GameStateManager.successState);
-		else if (GameManager.gameMode == 0)
-			SceneHandler.instance.LoadNormalGame();
-		else
-			SceneHandler.instance.LoadTestGame();
+		GameStateManager.instance.SwitchState(GameStateManager.successState);
 	}
 	
 	public void SetObjRotation()
