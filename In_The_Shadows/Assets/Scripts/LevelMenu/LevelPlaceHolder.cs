@@ -1,5 +1,5 @@
-using UnityEngine;
 using TMPro; 
+using UnityEngine;
 using UnityEngine.UI;
 
 public class LevelPlaceHolder : MonoBehaviour
@@ -25,7 +25,12 @@ public class LevelPlaceHolder : MonoBehaviour
 	{
 		if (levelInfo.isLocked) return;
 		if (!levelInfo.passed || GameManager.gameMode == 1)
+		{
 			MapManager.currentLevelIndex = levelInfo.levelSceneIndex;
+			levelText.color = new Color(1, 1, 1);
+		}
+		else
+			levelText.color = new Color(1, 0, 0);
 		levelText.gameObject.SetActive(true);
 	}
 
@@ -38,9 +43,8 @@ public class LevelPlaceHolder : MonoBehaviour
 
 	public void CheckLock()
 	{
-		if (levelInfo.isLocked){
+		if (levelInfo.isLocked)
 			border.SetActive(true);
-		}
 		else
 			border.SetActive(false);
 	}
