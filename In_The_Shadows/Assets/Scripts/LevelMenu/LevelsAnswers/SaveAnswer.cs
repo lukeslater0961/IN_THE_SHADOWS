@@ -25,7 +25,7 @@ public class SaveAnswer : MonoBehaviour
 
 				newAnswer.renderedAnswer = renderTexture;
 				newAnswer.byteMask =  GetTextureValues(renderTexture);
-				string assetPath = "Assets/Scripts/LevelMenu/LevelsAnswers/Level1/" + "Level1Answer" + ".asset";
+				string assetPath = "Assets/Scripts/LevelMenu/LevelsAnswers/Level3/" + "Level3Answer" + ".asset";
 
 				//System.IO.Directory.CreateDirectory("Assets/Scripts/LevelMenu/Levels/Level1/");
 
